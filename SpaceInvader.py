@@ -51,14 +51,18 @@ b_y = 480
 
 # Score of a Player
 score = 0
+s_size = 30
 pygame.font.init()
-myFont = pygame.font.SysFont('Comic Sans MS', 30)
 
 # Show Text
+red = 255
+green = 255
+blue = 255
 
 
 def showText():
-    text = myFont.render(f"Score : {score}", True, (255, 255, 255))
+    myFont = pygame.font.SysFont('Comic Sans MS', s_size)
+    text = myFont.render(f"Score : {score}", True, (red, green, blue))
     screen.blit(text, (0, 0))
 
 # Player Movement
@@ -140,6 +144,14 @@ while running:
                 aliens_y[i] += aliens_y_change[i]
                 aliens_x_change[i] = -alien_speed[i]
                 aliens_x[i] += aliens_x_change[i]
+        else:
+            if s_size < 100:
+                s_size += 1
+
+            red = randint(0, 256)
+            green = randint(0, 255)
+            blue = randint(0, 255)
+            print(red, green, blue)
 
         if aliens_y[i] > s_height:
             lost = True
